@@ -6,7 +6,7 @@ class HTMLBuilder: Builder() {
     private lateinit var filename: String
     private lateinit var writer: PrintWriter
 
-    override fun makeTitle(title: String) {
+    override fun buildTitle(title: String) {
         filename = "$title.html"
         try {
             writer = PrintWriter(FileWriter(filename))
@@ -18,11 +18,11 @@ class HTMLBuilder: Builder() {
         writer.println("<h1>$title</h1>")
     }
 
-    override fun makeString(str: String) {
+    override fun buildString(str: String) {
         writer.println("<p>$str</p>")
     }
 
-    override fun makeItems(items: Array<String>) {
+    override fun buildItems(items: Array<String>) {
         writer.println("<ul>")
         for (i in 0 until items.size) {
             writer.println("<li>" + items[i] + "</li>")
@@ -30,7 +30,7 @@ class HTMLBuilder: Builder() {
         writer.println("</ul>")
     }
 
-    override fun close() {
+    override fun buildClose() {
         writer.println("</body></html>")
         writer.close()
     }
